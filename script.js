@@ -1,24 +1,16 @@
 // Select all squares
 const squares = document.querySelectorAll(".square");
 
-// Function to change other squares to Coffee color
-function handleHover(event) {
-    squares.forEach(square => {
-        if (square !== event.target) {
-            square.style.backgroundColor = "#6F4E37"; // Coffee color
-        }
+// Function to change other squares to Coffee color on hover
+squares.forEach((square, index) => {
+    square.addEventListener("mouseenter", () => {
+        squares.forEach((s, i) => {
+            if (i !== index) s.style.backgroundColor = "#6F4E37"; // Coffee
+        });
     });
-}
 
-// Function to reset squares to Lavender
-function resetColors() {
-    squares.forEach(square => {
-        square.style.backgroundColor = "#E6E6FA"; // Lavender color
+    // Reset colors on mouseout
+    square.addEventListener("mouseleave", () => {
+        squares.forEach((s) => s.style.backgroundColor = "#E6E6FA"); // Lavender
     });
-}
-
-// Add event listeners for hover and mouse out
-squares.forEach(square => {
-    square.addEventListener("mouseenter", handleHover);
-    square.addEventListener("mouseleave", resetColors);
 });
